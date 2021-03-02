@@ -29,7 +29,10 @@ const Register: React.FC<registerProps> = ({ }) => {
     const [, register] = useMutation(REGISTER_MUT)
     return (
         <Wrapper variant="small">
-            <Formik initialValues={{ username: "", password: "" }} onSubmit={(values) => { return register(values) }}>
+            <Formik
+                initialValues={{ username: "", password: "" }}
+                onSubmit={(values) => { return register(values) }}
+            >
                 {
                     ({ isSubmitting }) => (
                         <Form>
