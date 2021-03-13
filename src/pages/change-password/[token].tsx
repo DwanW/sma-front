@@ -8,9 +8,10 @@ import { toErrorMap } from "../../utils/toErrorMap";
 import { useChangePasswordMutation } from "../../generated/graphql";
 import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
-import { Box } from "@chakra-ui/layout";
+import { Box, Flex, Link } from "@chakra-ui/layout";
 import { withUrqlClient } from "next-urql";
 import { createUrqlClient } from "../../utils/createUrqlClient";
+import NextLink from "next/link";
 
 const ChangePassword: NextPage<{
   token: string;
@@ -47,7 +48,16 @@ const ChangePassword: NextPage<{
               label="New Password"
               type="password"
             />
-            {tokenError ? <Box color="red">{tokenError}</Box> : null}
+            {tokenError ? (
+              <Flex>
+                <Box color="red" mr={4}>
+                  {tokenError}
+                </Box>
+                <NextLink href="/forgot-password">
+                  <Link>click here to get a new one</Link>
+                </NextLink>
+              </Flex>
+            ) : null}
             <Button
               mt={4}
               type="submit"
